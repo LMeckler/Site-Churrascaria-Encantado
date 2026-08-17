@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Churrascaria Encantado | Coronel Fabriciano, MG</title>
+<style>
+  :root{
+    --brasa:#a8321e;
+    --brasa-dark:#5c1a10;
+    --creme:#faf6ef;
+    --carvao:#1c1512;
+    --dourado:#c9973f;
+    --dourado-light:#e4c384;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Georgia','Times New Roman',serif;
+    background:var(--creme);
+    color:var(--carvao);
+    line-height:1.7;
+  }
+  h1,h2,h3{font-family:'Georgia',serif;}
+
+  /* HERO */
+  .hero{
+    position:relative;
+    min-height:92vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:#fff;
+    background:
+      linear-gradient(180deg, rgba(20,12,8,.35) 0%, rgba(20,12,8,.75) 100%),
+      url('https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1600&auto=format&fit=crop')
+      center/cover no-repeat fixed;
+  }
+  .hero-inner{padding:0 24px;}
+  .hero .badge{
+    display:inline-block;
+    border:1px solid var(--dourado-light);
+    color:var(--dourado-light);
+    padding:7px 20px;
+    border-radius:30px;
+    font-size:.78rem;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    margin-bottom:26px;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem,6vw,4.6rem);
+    letter-spacing:1px;
+    margin-bottom:16px;
+    text-shadow:0 4px 20px rgba(0,0,0,.4);
+  }
+  .hero p.tagline{
+    font-size:clamp(1rem,2vw,1.3rem);
+    font-style:italic;
+    color:#f1e5cf;
+    max-width:600px;
+    margin:0 auto 30px;
+  }
+  .hero-rating{
+    display:inline-flex;
+    gap:10px;
+    align-items:center;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.3);
+    padding:10px 22px;
+    border-radius:30px;
+    font-size:.95rem;
+    backdrop-filter:blur(4px);
+  }
+  .hero-rating strong{color:var(--dourado-light);}
+  .scroll-cue{
+    position:absolute;
+    bottom:26px;left:50%;
+    transform:translateX(-50%);
+    font-size:.75rem;
+    letter-spacing:2px;
+    color:rgba(255,255,255,.75);
+    text-transform:uppercase;
+  }
+
+  nav{
+    background:var(--carvao);
+    display:flex;
+    justify-content:center;
+    gap:36px;
+    padding:16px;
+    flex-wrap:wrap;
+    position:sticky;
+    top:0;
+    z-index:50;
+    box-shadow:0 2px 12px rgba(0,0,0,.25);
+  }
+  nav a{
+    color:var(--dourado-light);
+    text-decoration:none;
+    font-size:.82rem;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    transition:color .2s;
+  }
+  nav a:hover{color:#fff;}
+
+  section{
+    max-width:1100px;
+    margin:0 auto;
+    padding:90px 24px;
+  }
+  .eyebrow{
+    text-align:center;
+    color:var(--dourado);
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-size:.78rem;
+    margin-bottom:10px;
+  }
+  h2{
+    color:var(--brasa-dark);
+    font-size:clamp(1.8rem,3.5vw,2.6rem);
+    margin-bottom:18px;
+    text-align:center;
+    font-weight:normal;
+  }
+  .divider{
+    width:70px;
+    height:2px;
+    background:var(--dourado);
+    margin:0 auto 40px;
+  }
+
+  /* ABOUT */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:60px;
+    align-items:center;
+  }
+  .about-grid img{
+    width:100%;
+    height:420px;
+    object-fit:cover;
+    border-radius:6px;
+    box-shadow:0 20px 40px rgba(0,0,0,.18);
+  }
+  .about-text p{margin-bottom:18px;font-size:1.02rem;color:#3a2e27;}
+  .stats{
+    display:flex;
+    gap:40px;
+    margin-top:30px;
+    flex-wrap:wrap;
+  }
+  .stats div strong{
+    display:block;
+    font-size:1.9rem;
+    color:var(--brasa);
+    font-family:Georgia,serif;
+  }
+  .stats div span{font-size:.82rem;letter-spacing:1px;text-transform:uppercase;color:#7a6a5e;}
+
+  /* GALLERY */
+  .gallery-wrap{background:var(--carvao);}
+  .gallery-wrap h2, .gallery-wrap .eyebrow{color:var(--dourado-light);}
+  .gallery-wrap h2{color:#fff;}
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    grid-auto-rows:190px;
+    gap:14px;
+  }
+  .gallery-grid img{
+    width:100%;height:100%;
+    object-fit:cover;
+    border-radius:4px;
+    filter:saturate(1.05);
+    transition:transform .4s ease;
+  }
+  .gallery-grid img:hover{transform:scale(1.04);}
+  .gallery-grid .tall{grid-row:span 2;}
+  .gallery-caption{
+    text-align:center;
+    color:#a8998a;
+    font-size:.8rem;
+    margin-top:20px;
+    font-style:italic;
+  }
+
+  /* MENU */
+  .menu-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:28px;
+  }
+  .menu-card{
+    background:#fff;
+    border-radius:8px;
+    overflow:hidden;
+    box-shadow:0 10px 26px rgba(0,0,0,.08);
+    text-align:center;
+  }
+  .menu-card img{
+    width:100%;height:170px;object-fit:cover;
+  }
+  .menu-card .content{padding:22px 18px;}
+  .menu-card h3{
+    color:var(--brasa-dark);
+    margin-bottom:8px;
+    font-size:1.1rem;
+    letter-spacing:.5px;
+  }
+  .menu-card p{font-size:.9rem;color:#5a4c42;}
+
+  /* INFO */
+  .info-section{background:#fff;}
+  .info-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:40px;
+    text-align:center;
+  }
+  .info-block{padding:10px;}
+  .info-block .icon{
+    font-size:1.6rem;
+    color:var(--dourado);
+    margin-bottom:12px;
+  }
+  .info-block h3{
+    color:var(--brasa-dark);
+    margin-bottom:10px;
+    font-size:1rem;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+  }
+  .info-block p{font-size:.95rem;color:#4a3c33;}
+  .amenities{
+    display:flex;flex-wrap:wrap;gap:8px;
+    justify-content:center;
+    margin-top:16px;
+  }
+  .amenities span{
+    background:var(--creme);
+    border:1px solid var(--dourado);
+    padding:5px 14px;
+    border-radius:16px;
+    font-size:.78rem;
+    color:var(--brasa-dark);
+  }
+
+  /* VISIT / MAP */
+  .visit{
+    background:linear-gradient(135deg,var(--brasa-dark),var(--brasa));
+    color:#fff;
+    text-align:center;
+  }
+  .visit h2{color:#fff;}
+  .visit .divider{background:var(--dourado-light);}
+  .visit p{max-width:560px;margin:0 auto 10px;opacity:.92;}
+  .phone-line{
+    font-size:1.4rem;
+    letter-spacing:1px;
+    margin:20px 0 34px;
+    color:var(--dourado-light);
+  }
+  .map-embed{
+    width:100%;
+    height:380px;
+    border:0;
+    border-radius:10px;
+    box-shadow:0 20px 50px rgba(0,0,0,.3);
+  }
+
+  footer{
+    background:var(--carvao);
+    color:#8f8175;
+    text-align:center;
+    padding:34px 20px;
+    font-size:.82rem;
+  }
+
+  @media(max-width:850px){
+    .about-grid{grid-template-columns:1fr;}
+    .about-grid img{height:300px;}
+    .info-grid{grid-template-columns:1fr;gap:30px;}
+    .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:160px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="badge">Rodízio de Carnes · Coronel Fabriciano, MG</span>
+    <h1>Churrascaria Encantado</h1>
+    <p class="tagline">Picanha na brasa, buffet completo e sushi, num só rodízio para toda a família</p>
+    <div class="hero-rating">★★★★☆ <strong>4.2</strong> · mais de 14 mil avaliações</div>
+  </div>
+  <div class="scroll-cue">role para conhecer ↓</div>
+</header>
+
+<nav>
+  <a href="#sobre">Sobre</a>
+  <a href="#galeria">Galeria</a>
+  <a href="#cardapio">Cardápio</a>
+  <a href="#info">Informações</a>
+  <a href="#visite">Visite</a>
+</nav>
+
+<section id="sobre">
+  <p class="eyebrow">Nossa História</p>
+  <h2>Tradição em cada espeto</h2>
+  <div class="divider"></div>
+  <div class="about-grid">
+    <img src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?q=80&w=1200&auto=format&fit=crop" alt="Rodízio de carnes na churrasqueira">
+    <div class="about-text">
+      <p>
+        A Churrascaria Encantado é uma casa tradicional de rodízio, com destaque para a
+        famosa picanha, servida em ambiente climatizado e acolhedor. Além do churrasco,
+        nosso buffet reúne saladas frescas, peixes e uma seleção de sushi — tudo isso com
+        espaço kids para a criançada e estacionamento próprio.
+      </p>
+      <p>
+        Um lugar pensado para reunir a família em volta da mesa, sem pressa, com o
+        cheiro de carne na brasa no ar.
+      </p>
+      <div class="stats">
+        <div><strong>4.2★</strong><span>Avaliação</span></div>
+        <div><strong>7h—00h</strong><span>Todos os dias</span></div>
+        <div><strong>R$40—60</strong><span>Por pessoa</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="galeria" class="gallery-wrap">
+  <p class="eyebrow">Ambiente</p>
+  <h2>Um pouco da nossa casa</h2>
+  <div class="divider"></div>
+  <div class="gallery-grid">
+    <img class="tall" src="https://images.unsplash.com/photo-1600891964092-4316c288032e?q=80&w=900&auto=format&fit=crop" alt="Picanha grelhada">
+    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=900&auto=format&fit=crop" alt="Espeto de carne na churrasqueira">
+    <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?q=80&w=900&auto=format&fit=crop" alt="Salão de restaurante">
+    <img class="tall" src="https://images.unsplash.com/photo-1553163147-622ab57be1c7?q=80&w=900&auto=format&fit=crop" alt="Buffet de saladas">
+    <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?q=80&w=900&auto=format&fit=crop" alt="Pratos de sushi">
+    <img src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?q=80&w=900&auto=format&fit=crop" alt="Carnes no rodízio">
+  </div>
+  <p class="gallery-caption">Fotos ilustrativas do estilo da casa — substitua pelas fotos reais do salão quando disponíveis.</p>
+</section>
+
+<section id="cardapio">
+  <p class="eyebrow">O Que Servimos</p>
+  <h2>Cardápio do Rodízio</h2>
+  <div class="divider"></div>
+  <div class="menu-grid">
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=600&auto=format&fit=crop" alt="Rodízio de carnes">
+      <div class="content">
+        <h3>Rodízio de Carnes</h3>
+        <p>Picanha, cortes nobres e espetos passando na mesa sem parar.</p>
+      </div>
+    </div>
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1553163147-622ab57be1c7?q=80&w=600&auto=format&fit=crop" alt="Buffet de saladas">
+      <div class="content">
+        <h3>Buffet Completo</h3>
+        <p>Saladas, acompanhamentos e pratos quentes à vontade.</p>
+      </div>
+    </div>
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1544943910-4c1dc44aab44?q=80&w=600&auto=format&fit=crop" alt="Peixes grelhados">
+      <div class="content">
+        <h3>Peixes</h3>
+        <p>Seleção de pescados frescos preparados na casa.</p>
+      </div>
+    </div>
+    <div class="menu-card">
+      <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?q=80&w=600&auto=format&fit=crop" alt="Sushi">
+      <div class="content">
+        <h3>Sushi</h3>
+        <p>Rolinhos e combinados japoneses no salão de frios.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="info" class="info-section">
+  <p class="eyebrow">Para Sua Visita</p>
+  <h2>Informações Práticas</h2>
+  <div class="divider"></div>
+  <div class="info-grid">
+    <div class="info-block">
+      <div class="icon">📍</div>
+      <h3>Endereço</h3>
+      <p>Av. Pres. Tancredo de Almeida Neves, 625<br>Coronel Fabriciano, MG — 35171-302</p>
+    </div>
+    <div class="info-block">
+      <div class="icon">🕒</div>
+      <h3>Horário</h3>
+      <p>Todos os dias<br>7h às 00h</p>
+    </div>
+    <div class="info-block">
+      <div class="icon">📞</div>
+      <h3>Contato</h3>
+      <p>+55 31 3841-4147</p>
+    </div>
+  </div>
+  <div class="amenities">
+    <span>Ar-condicionado</span>
+    <span>Estacionamento</span>
+    <span>Espaço Kids</span>
+    <span>Wi-Fi grátis</span>
+    <span>Acessível</span>
+    <span>Delivery</span>
+  </div>
+</section>
+
+<section id="visite" class="visit">
+  <p class="eyebrow" style="color:var(--dourado-light);">Venha Nos Visitar</p>
+  <h2>Reserve Sua Mesa</h2>
+  <div class="divider"></div>
+  <p>Traga a família para um rodízio completo, num ambiente pensado para todos.</p>
+  <div class="phone-line">+55 31 3841-4147</div>
+  <iframe class="map-embed" loading="lazy"
+    src="https://www.google.com/maps?q=Churrascaria+Encantado+Coronel+Fabriciano+MG&output=embed">
+  </iframe>
+</section>
+
+<footer>
+  Churrascaria Encantado · Av. Pres. Tancredo de Almeida Neves, 625, Coronel Fabriciano - MG · +55 31 3841-4147
+</footer>
+
+</body>
+</html>
